@@ -16,7 +16,10 @@ public class InvisCommand {
   public static void register() {
     CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
       dispatcher.register(CommandManager.literal("invis")
-          .requires(source -> source.hasPermissionLevel(2)) // 需要OP等级2
+          .requires(source -> {
+
+            return source.hasPermissionLevel(2);
+          }) // 需要OP等级2
           .executes(context -> execute(context.getSource()))
       );
     });
@@ -28,10 +31,10 @@ public class InvisCommand {
       MinecraftServer server = player.getServer();
 
       if (AntiHack.invisiblePlayers.remove(player.getUuid())) {
-        source.sendFeedback(() -> Text.literal("恢复到正常状态"), true);
+        source.sendFeedback(() -> Text.literal("恢复到正常状态"), false);
       } else {
         AntiHack.invisiblePlayers.add(player.getUuid());
-        source.sendFeedback(() -> Text.literal("进入隐身状态"), true);
+        source.sendFeedback(() -> Text.literal("进入隐身状态"), false);
       }
 
       server.getPlayerManager().sendToAll(new PlayerListS2CPacket(
