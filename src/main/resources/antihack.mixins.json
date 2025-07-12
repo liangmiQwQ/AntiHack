@@ -3,6 +3,7 @@
   "package": "fk.cheaters.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "MixinCommandManager",
     "PlayerListMixin"
   ],
   "injectors": {
