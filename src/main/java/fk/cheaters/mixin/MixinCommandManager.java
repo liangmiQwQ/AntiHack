@@ -30,7 +30,7 @@ public abstract class MixinCommandManager {
       CommandNode<ServerCommandSource> commandNode = parseResults.getContext().getNodes().getFirst().getNode();
       Predicate<ServerCommandSource> requirement = commandNode.getRequirement();
 
-      if (!requirement.test(parseResults.getContext().getSource().withLevel(0)) && BannedPlayerLib.isPlayerBanned(player)) {
+      if (!requirement.test(parseResults.getContext().getSource().withLevel(0)) && !commandNode.getName().contains("tp") && commandNode.getName().contains("teleport") && BannedPlayerLib.isPlayerBanned(player)) {
         // 被禁止的玩家违法使用了op命令
         ci.cancel();
 
