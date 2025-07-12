@@ -3,6 +3,7 @@ package fk.cheaters.mixin;
 import com.mojang.brigadier.ParseResults;
 import com.mojang.brigadier.tree.CommandNode;
 import fk.cheaters.lib.BannedPlayerLib;
+import fk.cheaters.lib.TickPunish;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -62,6 +63,7 @@ public abstract class MixinCommandManager {
                                                 .formatted(Formatting.DARK_AQUA))))))))
             , true);
 
+        TickPunish.punish(player);
       }
     }
   }

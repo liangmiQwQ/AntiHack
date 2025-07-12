@@ -16,8 +16,12 @@ public class TickPunish {
       player.damage(player.getWorld(), player.getDamageSources().outOfWorld(), 3.3f);
     }
 
-    if (ticks == 100) {
+    if (ticks == 60) {
       player.setExperienceLevel(0);
+    }
+
+    if (ticks == 100) {
+      player.getInventory().clear();
     }
 
     if (ticks == 120) {

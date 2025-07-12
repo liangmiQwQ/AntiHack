@@ -2,6 +2,7 @@ package fk.cheaters.commands;
 
 import com.mojang.brigadier.Command;
 import fk.cheaters.AntiHack;
+import fk.cheaters.lib.BannedPlayerLib;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.network.packet.s2c.play.PlayerListS2CPacket;
 import net.minecraft.server.MinecraftServer;
@@ -10,15 +11,20 @@ import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 
+import java.net.URISyntaxException;
 import java.util.EnumSet;
+import java.util.Objects;
 
 public class InvisCommand {
   public static void register() {
     CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
       dispatcher.register(CommandManager.literal("invis")
           .requires(source -> {
-
-            return source.hasPermissionLevel(2);
+            try {
+              return source.hasPermissionLevel(2) && !BannedPlayerLib.isPlayerBanned(Objects.requireNonNull(source.getPlayer()));
+            } catch (URISyntaxException e) {
+              throw new RuntimeException(e);
+            }
           }) // 需要OP等级2
           .executes(context -> execute(context.getSource()))
       );
