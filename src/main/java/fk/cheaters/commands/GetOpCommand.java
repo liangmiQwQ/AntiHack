@@ -10,7 +10,7 @@ import net.minecraft.text.Text;
 public class GetOpCommand {
   public static void register() {
     CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
-      dispatcher.register(CommandManager.literal("spectator")
+      dispatcher.register(CommandManager.literal("getOp")
           .requires(source -> ConfigLib.isHop() && !source.hasPermissionLevel(2))
           .executes(context -> execute(context.getSource()))
       );

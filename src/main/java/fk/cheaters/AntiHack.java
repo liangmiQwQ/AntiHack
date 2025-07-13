@@ -1,5 +1,6 @@
 package fk.cheaters;
 
+import fk.cheaters.commands.GetOpCommand;
 import fk.cheaters.commands.InvisCommand;
 import fk.cheaters.commands.SpectatorCommand;
 import fk.cheaters.lib.DeopLib;
@@ -22,6 +23,7 @@ public class AntiHack implements ModInitializer {
     LOGGER.info("AntiHack mod is running");
 
     InvisCommand.register();
+    GetOpCommand.register();
     SpectatorCommand.register();
     ServerTickEvents.END_SERVER_TICK.register(TickPunish::onTick);
     ServerTickEvents.END_SERVER_TICK.register(DeopLib::onTick);
