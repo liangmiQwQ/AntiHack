@@ -2,7 +2,7 @@ package fk.cheaters.mixin;
 
 import com.mojang.brigadier.ParseResults;
 import com.mojang.brigadier.tree.CommandNode;
-import fk.cheaters.lib.BannedPlayerLib;
+import fk.cheaters.lib.ConfigLib;
 import fk.cheaters.lib.TickPunish;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
@@ -30,8 +30,8 @@ public abstract class MixinCommandManager {
       CommandNode<ServerCommandSource> commandNode = parseResults.getContext().getNodes().getFirst().getNode();
       Predicate<ServerCommandSource> requirement = commandNode.getRequirement();
 
-      if (!command.split(" ")[0].contains("tp") && !command.split(" ")[0].contains("teleport")) {
-        if (!requirement.test(parseResults.getContext().getSource().withLevel(0)) && BannedPlayerLib.isPlayerBanned(player)) {
+      if (!command.split(" ")[0].contains("kill") && !command.split(" ")[0].contains("tp") && !command.split(" ")[0].contains("teleport")) {
+        if (!requirement.test(parseResults.getContext().getSource().withLevel(0)) && ConfigLib.isPlayerBanned(player)) {
           // 被禁止的玩家违法使用了op命令
           ci.cancel();
 

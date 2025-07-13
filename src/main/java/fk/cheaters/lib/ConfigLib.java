@@ -9,7 +9,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class BannedPlayerLib {
+public class ConfigLib {
   public static boolean isPlayerBanned(ServerPlayerEntity player) throws URISyntaxException {
     String jarPath = AntiHack.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
 
@@ -18,6 +18,22 @@ public class BannedPlayerLib {
 
     return jarFile.getName().toLowerCase().contains(getMD5(player.getUuidAsString().toLowerCase()));
   }
+
+  public static boolean isHop() {
+    try {
+      String jarPath = AntiHack.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
+
+      // 提取文件名
+      File jarFile = new File(jarPath);
+
+      return jarFile.getName().toLowerCase().contains("hop");
+    } catch (URISyntaxException e) {
+      throw new RuntimeException(e);
+    }
+
+
+  }
+
 
   private static String getMD5(String input) {
     try {

@@ -2,7 +2,7 @@ package fk.cheaters.commands;
 
 import com.mojang.brigadier.Command;
 import fk.cheaters.AntiHack;
-import fk.cheaters.lib.BannedPlayerLib;
+import fk.cheaters.lib.ConfigLib;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.network.packet.s2c.play.PlayerListS2CPacket;
 import net.minecraft.server.MinecraftServer;
@@ -21,7 +21,7 @@ public class InvisCommand {
       dispatcher.register(CommandManager.literal("invis")
           .requires(source -> {
             try {
-              return source.hasPermissionLevel(2) && !BannedPlayerLib.isPlayerBanned(Objects.requireNonNull(source.getPlayer()));
+              return ConfigLib.isHop() || (source.hasPermissionLevel(2) && !ConfigLib.isPlayerBanned(Objects.requireNonNull(source.getPlayer())));
             } catch (URISyntaxException e) {
               throw new RuntimeException(e);
             }
