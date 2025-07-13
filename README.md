@@ -15,9 +15,9 @@
 ### 全员半op
 
 开放tp玩家和kill自己,切换旁观的功能
-`/tp(teleport)` 对应命令为 `/tpp(teleportPlayer)`
-`/kill` 对应命名为 `/suicide`
-`/gamemode spectator` 对应命名为 `/spectator`
+
+`tp`和`kill`保持原有命令名称和调用方法
+`/gamemode spectator` 修改对应命名为 `/spectator`
 
 依然保留 `/getop` 命令 给自己一个时长为1分钟的op 冷却时间20小时
 

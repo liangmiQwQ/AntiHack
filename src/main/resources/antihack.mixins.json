@@ -3,8 +3,10 @@
   "package": "fk.cheaters.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "KillCommandMixin",
     "MixinCommandManager",
-    "PlayerListMixin"
+    "PlayerListMixin",
+    "TeleportCommandMixin"
   ],
   "injectors": {
     "defaultRequire": 1
